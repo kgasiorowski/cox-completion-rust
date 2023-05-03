@@ -1,6 +1,7 @@
 mod consts;
 
 use std::collections::{HashMap, HashSet};
+use std::time::Instant;
 use rand::prelude::*;
 use rand::seq::SliceRandom;
 
@@ -38,6 +39,8 @@ fn main() {
     if consts::PET {
         num_uniques_for_completion += 1;
     }
+
+    let start = Instant::now();
     for i in 0..consts::NUM_ACCTS {
         if (i % 10000) == 0 {
             println!("{i}")
@@ -67,6 +70,8 @@ fn main() {
         }
         completion_kcs.push(kc_counter)
     }
+    let duration = start.elapsed();
+    println!("Simulation duration: {duration:?}");
     let avg_kc_for_completion: f32 = (completion_kcs.iter().sum::<u64>() as f32) / consts::NUM_ACCTS as f32;
     let percent_got_tbow_by_testing_kc: f32 = num_tbows_by_kc_completion as f32 / consts::NUM_ACCTS as f32 * 100.0;
     println!("Average completion kc: {avg_kc_for_completion}");
