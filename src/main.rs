@@ -57,7 +57,7 @@ fn main() {
                 }
 
                 obtained_drops.insert(drop);
-                if consts::PET && thread_rng().gen::<f32>() < (1 as f32/53 as f32) {
+                if consts::PET && thread_rng().gen::<f32>() < (1.0/53.0) {
                     obtained_drops.insert(String::from("Olmlet"));
                 }
             }
