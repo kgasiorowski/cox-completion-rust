@@ -42,8 +42,10 @@ fn main() {
 
     let start = Instant::now();
     for i in 0..consts::NUM_ACCTS {
-        if (i % 10000) == 0 {
-            println!("{i}")
+        if (i % (consts::NUM_ACCTS / 100)) == 0 {
+            let counter: u32 = i / (consts::NUM_ACCTS / 100);
+            let current_duration = start.elapsed();
+            println!("{counter}% ({current_duration:?})")
         }
         let mut obtained_drops: HashSet<String> = HashSet::new();
         let mut obtained_tbow: bool = false;
